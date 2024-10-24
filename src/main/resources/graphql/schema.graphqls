@@ -1,0 +1,8 @@
+type Query {
+    getSchools: [SchoolDataModel]
+}
+
+type SchoolDataModel {
+    id: ID
+    schoolName: String
+}
