@@ -1,8 +1,42 @@
 type Query {
     getSchools: [SchoolDataModel]
+    getSchoolByName(schoolName: String): SchoolDataModel
+}
+
+type Mutation {
+    addSchool(command: CreateSchoolCommand): SchoolCreatedEvent
+    updateSchool(command: UpdateSchoolCommand): SchoolUpdatedEvent
+    deleteSchool(command: DeleteSchoolCommand): SchoolDeletedEvent
 }
 
 type SchoolDataModel {
     id: ID
+    schoolName: String
+}
+
+type SchoolCreatedEvent {
+    schoolId: ID
+    schoolName: String
+}
+
+type SchoolUpdatedEvent {
+    schoolId: ID
+    schoolName: String
+}
+
+type SchoolDeletedEvent {
+    schoolName: String
+}
+
+input CreateSchoolCommand {
+    schoolName: String
+}
+
+input UpdateSchoolCommand {
+    previousSchoolName: String
+    newSchoolName: String
+}
+
+input DeleteSchoolCommand {
     schoolName: String
 }
